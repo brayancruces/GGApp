@@ -78,3 +78,80 @@ var mainView = myApp.addView('.view-main', {
 
 
 
+/* ===== Infinite Scroll Page ===== */
+myApp.onPageInit('misconsumos', function (page) {
+    // Loading trigger
+    var loading = false;
+    // Last loaded index, we need to pass it to script
+    var lastLoadedIndex = $$('.infinite-scroll .list-block li').length;
+    // Attach 'infinite' event handler
+    $$('.infinite-scroll').on('infinite', function () {
+        // Exit, if loading in progress
+        if (loading) return;
+        // Set loading trigger
+        loading = true;
+        // Request some file with data
+        $$.get('infinite-scroll-load.php', {leftIndex: lastLoadedIndex + 1}, function (data) {
+            loading = false;
+            if (data === '') {
+                // Nothing more to load, detach infinite scroll events to prevent unnecessary loadings
+                myApp.detachInfiniteScroll($$('.infinite-scroll'));
+            }
+            else {
+                // Append loaded elements to list block
+                $$('#infinito').append(data);
+                // Update last loaded index
+                lastLoadedIndex = $$('#infinito li').length;
+            }
+        });
+    });
+});
+
+
+myApp.onPageInit('catalogo', function (page) {
+  console.log('Estoy en catalogo');
+  console.log(page);
+
+   $.getScript( "js/catalogo.js", function( data, textStatus, jqxhr ) {
+  console.log( data ); // Data returned
+  console.log( textStatus ); // Success
+  console.log( jqxhr.status ); // 200
+  console.log( "Load was performed." );
+});
+
+
+
+
+});
+
+
+myApp.onPageInit('mapa', function (page) {
+  console.log('Estoy en mapa');
+  console.log(page);
+
+   $.getScript( "js/googlescript.js", function( data, textStatus, jqxhr ) {
+  console.log( data ); // Data returned
+  console.log( textStatus ); // Success
+  console.log( jqxhr.status ); // 200
+  console.log( "Load was performed." );
+});
+   
+
+   $.getScript( "js/gmaps.js", function( data, textStatus, jqxhr ) {
+  console.log( data ); // Data returned
+  console.log( textStatus ); // Success
+  console.log( jqxhr.status ); // 200
+  console.log( "Load was performed." );
+});
+
+   $.getScript( "js/mapa.js", function( data, textStatus, jqxhr ) {
+  console.log( data ); // Data returned
+  console.log( textStatus ); // Success
+  console.log( jqxhr.status ); // 200
+  console.log( "Load was performed." );
+});
+
+
+
+
+});

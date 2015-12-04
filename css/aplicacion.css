@@ -78,3 +78,8 @@ i.tabbar-demo-icon-4 {
  padding: 15px 1px; 
  font-size: 12px;
 }
+
+#map {
+      width: auto;
+      height: 400px;
+    }

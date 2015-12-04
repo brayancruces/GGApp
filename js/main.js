@@ -3,7 +3,7 @@
  *
  * Author: Brayan Cruces
  * 
- * Project: PiggyApp
+ * Project: GoGasApp
  *
  * Funciones principales para generar relacion
  * y Diagrama de Hasse.
@@ -29,21 +29,7 @@ var DATA_medida = 300;
  function liveEvents()
    {      
 
-          $('#intMin,#intMax').unbind('focus blur change keyup').bind("focus blur change keyup", function(){
-                   if($('input').val().length > 0 )
-                   {
-                        $('#btnRandom').removeAttr("disabled");
-                   } 
-                   else
-                   {
-                        	
-                        $('#btnRandom').attr('disabled', 'disabled');
-                        Dissapear();
-
-
-                   }
-            });
-
+         
 
           //Escuchar Tabs
 
@@ -417,7 +403,8 @@ function DibujarHasse(pHasse)
 $(document).ready(function(){
 		
 		
-		liveEvents();
+		//liveEvents();
+   
 
         //Click para el boton generar Random
 		$("#btnRandom").click	
